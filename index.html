@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#123f93">
+<link rel="manifest" href="manifest.json">
+<title>Quiz By Saurabh Choudhary</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="header">
+  <div class="app-tagline">Competitive Exam Preparation Quiz</div>
+  <a class="instagram-mini" href="https://www.instagram.com/saurabh_chy_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @saurabh_chy_" title="Instagram @saurabh_chy_">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.4" cy="6.7" r="1.1" class="ig-dot"></circle></svg>
+  </a>
+</header>
+
+<main>
+<section id="home" class="screen active">
+  <div class="features">
+    <button class="feature f1" data-open="quiz"><span>📝</span><b>Quiz</b><small>Practice & Improve</small></button>
+    <button class="feature f3" data-open="mock"><span>🎯</span><b>Mock Test</b><small>Full Syllabus Test</small></button>
+    <button class="feature f4" data-open="current"><span>📰</span><b>Current Affairs</b><small>Daily Updates</small></button>
+  </div>
+  <div class="title-row"><h2>🎯 Subjects</h2><button data-open="quiz">All Subjects →</button></div>
+  <div id="subjects" class="subjects"></div>
+  <div class="goal"><strong>हर सवाल से तैयारी, हर प्रयास से सफलता</strong><span>✓ सभी प्रमुख Competitive Exam Subjects</span><span>✓ Quiz • Mock Test • Current Affairs</span><span>✓ अपनी Progress को Track करें</span><span>✓ रोज़ Practice करें, लगातार Improve करें</span></div>
+</section>
+
+<section id="quiz" class="screen">
+  <div class="page-head"><button class="back">←</button><h2>Quiz</h2></div>
+  <div id="quiz-select">
+    <div class="panel"><h3>Subject चुनें</h3><p>जिस विषय का अभ्यास करना है, उसे चुनें।</p><div id="quizSubjects" class="quiz-subjects"></div></div>
+  </div>
+  <div id="quiz-area" hidden></div>
+</section>
+
+
+
+<section id="mock" class="screen">
+ <div class="page-head"><button class="back">←</button><h2>Mock Test</h2></div>
+ <div class="panel"><div class="mock-wrap"><div class="mock-info"><div><b>50</b><span>Questions</span></div><div><b>30</b><span>Minutes</span></div><div><b>−0.25</b><span>Negative</span></div></div><p>सभी subjects से mixed questions. हर सही उत्तर +1 और गलत उत्तर −0.25.</p><button class="primary" id="startMock">🎯 Mock Test शुरू करें</button><div id="mockArea"></div></div></div>
+</section>
+
+<section id="current" class="screen">
+ <div class="page-head"><button class="back">←</button><h2>📰 Current Affairs</h2></div>
+ <div id="current-area">
+   <div class="panel center"><div class="big-icon">📰</div><h3>Monthly Current Affairs</h3><p>पिछले 12 महीनों को month-wise खोलकर 100-100 questions practice करो।</p><small>🇮🇳 National • 🌍 International • 💰 Economy • 🏦 Banking • 🔬 Science & Tech • 🛡️ Defence • 🏆 Sports • 🏅 Awards • 👤 Appointments • 🌱 Environment • 🏛️ Schemes</small></div>
+   <div id="currentMonths" class="ca-month-grid"></div>
+ </div>
+</section>
+
+<section id="search" class="screen">
+ <div class="page-head"><button class="back">←</button><h2>🔍 Search</h2></div>
+ <div class="panel search-panel"><input id="searchInput" class="search-input" type="search" placeholder="Question, subject या keyword खोजें…" autocomplete="off"><div id="searchResults" class="search-results"><p class="muted">ऊपर search करके questions खोजें।</p></div></div>
+</section>
+
+<section id="bookmarks" class="screen">
+ <div class="page-head"><button class="back">←</button><h2>🔖 Bookmarks</h2></div>
+ <div id="bookmarkList" class="bookmark-list"></div>
+</section>
+
+<section id="progress" class="screen">
+ <div class="page-head"><h2>My Progress</h2></div>
+ <div class="stats"><div><b id="attempted">0</b><span>Questions</span></div><div><b id="correct">0</b><span>Correct</span></div><div><b id="accuracy">0%</b><span>Accuracy</span></div></div>
+ <div class="panel progress-panel"><h3>📊 Performance</h3><p id="progressText">अभी कोई quiz attempt नहीं किया गया है।</p><div id="subjectProgress" class="subject-progress"></div></div>
+</section>
+
+<section id="settings" class="screen">
+ <div class="page-head"><button class="back">←</button><h2>⚙️ Settings</h2></div>
+ <div class="panel settings-panel">
+  <div class="setting-row"><div><b>🔊 Answer Sound</b><small>सही/गलत answer की sound</small></div><label class="switch"><input id="soundToggle" type="checkbox" checked><span></span></label></div>
+  <div class="setting-row"><div><b>🌙 Dark Mode</b><small>App का dark appearance</small></div><label class="switch"><input id="darkToggle" type="checkbox"><span></span></label></div>
+  <div class="setting-row"><div><b>📱 Install App</b><small>Home screen पर Quiz App को Home screen पर जोड़ें</small></div><button class="small-open" id="installBtn">Install</button></div>
+  <div class="setting-row"><div><b>🔗 Share App</b><small>दोस्तों के साथ app link share करें</small></div><button class="small-open" id="shareBtn">Share</button></div>
+  <div class="setting-row danger-row"><div><b>🗑️ Reset Progress</b><small>Quiz progress और saved bookmarks हटाएँ</small></div><button class="danger-btn" id="resetBtn">Reset</button></div>
+ </div>
+ <div class="panel about-panel"><h3>🎯 About This App</h3><p>Competitive exam preparation के लिए बनाया गया learning platform — Quiz, Mock Test और Current Affairs के साथ।</p><div class="creator-line"><span>Created by <b>Saurabh Choudhary</b></span><a href="https://www.instagram.com/saurabh_chy_/" target="_blank" rel="noopener noreferrer">📸 @saurabh_chy_</a></div><small>Practice Smart • Prepare Strong</small></div>
+</section>
+
+<section id="more" class="screen">
+ <div class="page-head"><h2>More</h2></div>
+ <button class="menu" data-open="bookmarks">🔖 Bookmarks <span>›</span></button>
+ <button class="menu" data-open="search">🔍 Search Questions <span>›</span></button>
+ <button class="menu" data-open="settings">⚙️ Settings <span>›</span></button>
+ <div class="menu">ℹ️ About This App <span>›</span></div>
+</section>
+</main>
+
+<nav class="bottom">
+ <button class="nav active" data-open="home">⌂<span>Home</span></button>
+ <button class="nav" data-open="quiz">☑<span>Quiz</span></button>
+ <button class="nav" data-open="progress">▥<span>Progress</span></button>
+ <button class="nav" data-open="more">☰<span>More</span></button>
+</nav>
+<script src="current_affairs.js"></script>
+<script src="app.js"></script>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script>
+</body></html>
